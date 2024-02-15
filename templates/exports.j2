@@ -1,0 +1,1 @@
+/files {{ hostvars['web01']['openstack']['addresses']['network'] | map(attribute='addr') | first }}(rw,sync,no_subtree_check)

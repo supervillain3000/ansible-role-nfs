@@ -1,0 +1,7 @@
+- name: Configure NFS Server
+  import_tasks: server.yml
+  when: nfs_role == 'server'
+
+- name: Configure NFS Client
+  import_tasks: client.yml
+  when: nfs_role == 'client'

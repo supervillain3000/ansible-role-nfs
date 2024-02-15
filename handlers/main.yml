@@ -1,0 +1,9 @@
+# handlers file for nfs-server
+- name: restart nfs-kernel-server
+  systemd:
+    name: nfs-kernel-server
+    state: restarted
+
+- name: reload ufw
+  ufw:
+    state: reloaded

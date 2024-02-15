@@ -1,0 +1,18 @@
+- name: Install nfs-client
+  apt:
+    update_cache: yes
+    name: nfs-common
+
+- name: Create mount directory
+  file:
+    path: /mnt/shared
+    state: directory
+    mode: '0755'
+
+- name: Mount an NFS volume
+  ansible.posix.mount:
+    src: "{{ hostvars['files01']['openstack']['addresses']['network'] | map(attribute='addr') | first }}:/files"
+    path: /mnt/shared
+    opts: rw,sync,hard
+    state: mounted
+    fstype: nfs
